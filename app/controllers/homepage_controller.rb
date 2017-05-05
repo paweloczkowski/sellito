@@ -7,4 +7,7 @@ class HomepageController < ApplicationController
 
   def cookies
   end
+
+  def create
+  end
 end
