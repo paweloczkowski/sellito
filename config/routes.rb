@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homepage#index'
 
-get '/about', to: 'homepage#about'
-get '/cookies', to: 'homepage#about'
+  resources :categories
+
+  get '/about', to: 'homepage#about'
+  get '/cookies', to: 'homepage#cookies'
 end
