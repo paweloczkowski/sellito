@@ -44,3 +44,4 @@ class CategoriesController < ApplicationController
  def fetch_category
    @category = Category.find(params[:id])
  end
+end
