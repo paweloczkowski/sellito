@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :fetch_category, only: [:show, :edit, :update, :destroy]
+
   def index
     @categories = Category.all
   end
@@ -18,13 +20,9 @@ class CategoriesController < ApplicationController
   end
  end
 
- def show
-   @category = Category.find(params[:id])
- end
+ def show; end
 
- def edit
-   @category = Category.find(params[:id])
- end
+ def edit; end
 
  def update
    @category = Category.find(params[:id])
@@ -43,7 +41,6 @@ class CategoriesController < ApplicationController
 
  private
 
- def category_params
-   params.require(:category).permit(:name)
-   end
-end
+ def fetch_category
+   @category = Category.find(params[:id])
+ end
