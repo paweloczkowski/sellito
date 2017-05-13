@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :fetch_post, only: [:show, :edit, :update, :destroy]
+  before_action :fetch_post, only: %i[show edit update destroy]
   # before_action :fetch_post, only: %i(show edit update destroy)
   def index
     @posts = Post.all.reverse
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
- private
+  private
 
   def params_has_valid_user_id
     post_params[:user_id] == current_user.id.to_s
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
   def handle_post_validation_failed
     flash[:errors] = @post.errors.full_messages
-     redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def create_post
@@ -58,6 +58,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-   params.require(:post).permit(:title, :description, :expiration_date, :user_id)
+    params.require(:post).permit(:title, :description, :expiration_date, :user_id)
   end
 end

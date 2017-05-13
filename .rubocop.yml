@@ -16,11 +16,12 @@ AllCops:
   Include:
     - Rakefile
     - config.ru
+    - '**Gemfile'
   Exclude:
     - spec/**/*
     - db/**/*
     - config/**/*
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.4.4
 Style/StringLiterals:
   EnforcedStyle: single_quotes
 Style/AlignHash:
