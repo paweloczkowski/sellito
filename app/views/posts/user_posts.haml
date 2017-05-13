@@ -1,5 +1,5 @@
-= button_to "Add Post", new_post_path, method: :get, class: 'btn btn-primary'
-%h2 Post
+%h1 My_posts
+= button_to "Add Post", new_post_path, method: :get, class: 'btn'
 
 - @posts.each do |post|
   %p
