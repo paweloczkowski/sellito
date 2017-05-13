@@ -1,0 +1,6 @@
+%h2
+  Edit post:
+  = @post.title
+  = link_to "Delete", @post, method: :delete, data: {confirm: "Ar ju siur"}
+
+= render 'form'
