@@ -5,43 +5,49 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
- def new
+  def new
    @category = Category.new
- end
+  end
 
- def create
+  def create
    @category = Category.new(category_params)
-   if @category.save
+   if @category.valid?
+     @category.save
    flash[:notice] = 'Category created!'
    redirect_to @category
-  else
-    flash[:alert] = 'Could not create category'
+   else
+    flash['errors'] = @category.errors.full_messages
     redirect_back(fallback_location: root_path)
+   end
   end
- end
 
- def show; end
+  def show; end
 
- def edit; end
+  def edit; end
 
- def update
+  def update
    @category = Category.find(params[:id])
    @category.update_attributes(category_params)
    redirect_to @category
- end
+  end
 
- def destroy
+  def destroy
    @category = Category.find(params[:id])
    @category.destroy!
    flash[:notice] = "Category #{@category.name} deleted"
    redirect_to categories_path
- end
+  end
 
 
 
  private
 
- def fetch_category
+  def fetch_category
    @category = Category.find(params[:id])
- end
+  end
+
+  def category_params
+      # tylko zapisze name
+    params.require(:category).permit(:name)
+  end
 end
