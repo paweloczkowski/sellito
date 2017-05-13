@@ -14,11 +14,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    return unless post_params[:user_id] == current_user.id.to_s
+    return unless params_has_valid_user_id
     @post = Post.new(post_params)
     @post.valid? ? create_post : handle_post_validation_failed
   end
-  
+
   def show; end
 
   def edit; end
@@ -37,6 +37,10 @@ class PostsController < ApplicationController
   end
 
  private
+
+  def params_has_valid_user_id
+    post_params[:user_id] == current_user.id.to_s
+  end
 
   def handle_post_validation_failed
     flash[:errors] = @post.errors.full_messages
